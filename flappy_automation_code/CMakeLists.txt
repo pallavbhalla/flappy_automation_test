@@ -19,6 +19,8 @@ include_directories(
 
 add_executable(${PROJECT_NAME}_node src/flappy_automation_code.cpp)
 
+target_compile_options(${PROJECT_NAME}_node PRIVATE -std=c++17)
+
 target_link_libraries(${PROJECT_NAME}_node
    ${catkin_LIBRARIES}
 )

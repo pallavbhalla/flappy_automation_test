@@ -4,6 +4,11 @@ from sensor_msgs.msg import LaserScan
 from math import hypot
 #from std.msg import Float32
 
+try:
+    xrange
+except NameError:
+    xrange = range
+
 class Laser:
     def __init__(self,fov,resolution,scaling):
         self.fov = fov #degrees
@@ -30,7 +35,9 @@ class Laser:
         self._publish_laser_scan(pointcloud,startPoint)
         return pointcloud
 
-    def _raycast(self,(x0,y0),(x1,y1),bitmap):
+    def _raycast(self, p0, p1, bitmap):
+        x0, y0 = p0
+        x1, y1 = p1
         x0 = int(x0)
         y0 = int(y0)
         x1 = int(x1)
